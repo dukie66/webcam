@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>title</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-offset-4"></div>
+      <div class="col-4">
+        <div id="mywebcam"></div>
+        <button class="btn btn-warning" id="snap_btn">Take Snapshot</button>
+      </div>
+      <div class="col-4">
+        <div id="result">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"
+    integrity="sha256-t+nJEiBiQ6CP53aJk5ptfJ+gno5gl3N0RKYycDqZ5ko=" crossorigin="anonymous"></script>
+
+  <script>
+    Webcam.set({
+      width: 600,
+      height: 400,
+      image_format: 'jpeg',
+      jpeg_quality: 90
+    });
+    Webcam.attach('#mywebcam');
+
+    document.getElementById('snap_btn').addEventListener('click', snapshot);
+
+    function snapshot() {
+      Webcam.snap(function (data_uri) {
+        document.getElementById('result').innerHTML = `<img width="300" src="${data_uri}">`
+      });
+    }
+  </script>
+</body>
+
+</html>
